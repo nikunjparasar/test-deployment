@@ -1,2 +1,1 @@
-# Blade
-Blade AI Software
+Termina AI
