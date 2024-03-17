@@ -2,43 +2,18 @@ import { Authenticated, GitHubBanner, Refine, WelcomePage } from "@refinedev/cor
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import {
-  ErrorComponent,
-  ThemedLayoutV2,
-  ThemedSiderV2,
-  useNotificationProvider,
-} from "@refinedev/antd";
+import { useNotificationProvider} from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import dataProvider, {
-  GraphQLClient,
-  liveProvider,
-} from "@refinedev/nestjs-query";
+
+import { dataProvider, liveProvider } from "./providers";  
+
 import routerBindings, {
-  CatchAllNavigate,
   DocumentTitleHandler,
-  NavigateToResource,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import { App as AntdApp } from "antd";
-import { createClient } from "graphql-ws";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
-
-import {
-  BlogPostCreate,
-  BlogPostEdit,
-  BlogPostList,
-  BlogPostShow,
-} from "./pages/blog-posts";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
-import { ForgotPassword } from "./pages/forgotPassword";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
 
 
 function App() {
@@ -49,8 +24,8 @@ function App() {
           <AntdApp>
             <DevtoolsProvider>
               <Refine
-                // dataProvider={dataProvider(gqlClient)}
-                // liveProvider={liveProvider(wsClient)}
+                dataProvider={dataProvider}
+                liveProvider={liveProvider}
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerBindings}
                 // authProvider={authProvider}
